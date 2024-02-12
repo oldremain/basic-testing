@@ -12,50 +12,50 @@ const testCases = [
     b: 2,
     action: Action.Add,
     expected: 3,
-    assert: Matcher.ToEqual,
+    matcher: Matcher.ToEqual,
   },
   {
     a: 4,
     b: 2,
     action: Action.Subtract,
     expected: 2,
-    assert: Matcher.ToEqual,
+    matcher: Matcher.ToEqual,
   },
   {
     a: 3,
     b: 2,
     action: Action.Multiply,
     expected: 6,
-    assert: Matcher.ToEqual,
+    matcher: Matcher.ToEqual,
   },
   {
     a: 10,
     b: 2,
     action: Action.Divide,
     expected: 5,
-    assert: Matcher.ToEqual,
+    matcher: Matcher.ToEqual,
   },
   {
     a: 10,
     b: 2,
     action: Action.Exponentiate,
     expected: 100,
-    assert: Matcher.ToEqual,
+    matcher: Matcher.ToEqual,
   },
-  { a: 4, b: 2, action: 'x', expected: null, assert: Matcher.ToBeNull },
+  { a: 4, b: 2, action: 'x', expected: null, matcher: Matcher.ToBeNull },
   {
     a: 4,
     b: '2',
     action: Action.Add,
     expected: null,
-    assert: Matcher.ToBeNull,
+    matcher: Matcher.ToBeNull,
   },
 ];
 
 describe.each(testCases)(
   'simpleCalculator({a: $a, b: $b, action: $action})',
-  ({ a, b, action, expected, assert }) => {
-    switch (assert) {
+  ({ a, b, action, expected, matcher }) => {
+    switch (matcher) {
       case Matcher.ToEqual:
         test(`should return ${expected}`, () => {
           expect(simpleCalculator({ a, b, action })).toEqual(expected);
@@ -67,7 +67,7 @@ describe.each(testCases)(
         });
         break;
       default:
-        throw new Error(`Unexpected matcher - ${assert}`);
+        throw new Error(`Unexpected Matcher - ${matcher}`);
     }
   },
 );
